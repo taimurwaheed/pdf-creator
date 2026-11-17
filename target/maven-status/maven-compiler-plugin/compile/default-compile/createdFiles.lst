@@ -1,0 +1,15 @@
+TextFormatter.class
+PdfGenerator.class
+TextFormatter$1.class
+TextBlock$FontStyle.class
+Main.class
+TextBlock.class
+TextBlock$Run.class
+TextParser.class
+PdfGenerator$1.class
+TextFormatter$Fragment.class
+PdfGenerator$LineMetrics.class
+TextBlock$FontSize.class
+TextFormatter$Line.class
+TextFormatter$Word.class
+TextFormatter$Glyph.class
