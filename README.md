@@ -12,43 +12,49 @@ The supplied assessment example is repeated ten times to demonstrate pagination.
 
 Run all commands from the extracted `pdf-creator` directory.
 
-## Build and test
+## Run
+
+```sh
+mvn clean compile exec:java
+```
+
+This compiles the application and runs `Main` with its runtime dependencies.
+It automatically reads `input/sample.txt`, repeats the sample ten times and writes
+`output/result.pdf`. The output directory is created if necessary. The application
+reports the output path and page count; the supplied example produces three A4 pages.
+
+## Test and build
+
+Run all automated tests:
+
+```sh
+mvn clean test
+```
+
+Build a JAR and run the tests:
 
 ```sh
 mvn clean package
 ```
 
-This compiles for Java 17, runs the tests and builds a JAR in `target/`.
-To run just the tests, use `mvn clean test`.
+The run command compiles and generates the PDF; it does not run the tests.
+The packaged JAR is not self-contained; use the Maven run command above.
 
-## Run
-
-Copy the runtime dependencies once after a clean build:
+To generate a single sample copy instead of ten:
 
 ```sh
-mvn dependency:copy-dependencies "-DincludeScope=runtime"
+mvn clean compile exec:java "-Dexec.args=1"
 ```
 
-Windows (PowerShell):
+Running without `-Dexec.args` restores the default ten-copy, three-page example.
 
-```sh
-& "$env:JAVA_HOME/bin/java.exe" -cp "target/classes;target/dependency/*" Main
-```
+## VS Code and IntelliJ
 
-macOS/Linux:
-
-```sh
-java -cp "target/classes:target/dependency/*" Main
-```
-
-The application reports the output path and page count. The default example produces
-three A4 pages. An optional positive argument changes the repetition count, e.g.
-append `1` to the appropriate command above to generate one copy.
-The JAR is not self-contained; use the classpath commands above.
-
-For an IDE, import `pom.xml` as a Maven project, select JDK 17 or newer, and run
-`Main.main` with the project directory as the working directory. Maven uses the
-existing `src/main` and `src/test` directories directly.
+Open the project directory in VS Code with Java/Maven support, or import `pom.xml`
+as a Maven project in IntelliJ. Select JDK 17 or newer. In the IDE terminal, run
+`mvn clean compile exec:java` from the project directory. Alternatively, run
+`Main.main` with that directory as its working directory. Maven uses the existing
+`src/main` and `src/test` directories directly.
 
 ## Design and documentation
 
